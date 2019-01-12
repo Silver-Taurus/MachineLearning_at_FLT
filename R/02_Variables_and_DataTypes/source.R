@@ -45,36 +45,3 @@ var1 = "String"
 var2 = 7
 print(as.character(var2))
 print(as.numeric((var1)))     # will give you a warning message and NA conversion
-
-
-
-# ----- ARITHMETIC OPERATORS -----
-sprintf("4 + 5 = %d", 4 + 5)
-sprintf("4 - 5 = %d", 4 - 5)
-sprintf("4 * 5 = %d", 4 * 5)
-sprintf("4 / 5 = %1.3f", 4 / 5)
-
-# Modulus or remainder of division
-sprintf("5 %% 4 = %d", 5 %% 4)
-
-# Value raised to the exponent of the next
-sprintf("4^2 = %d", 4^2)
-
-
-
-# ----- VECTORS -----
-# Vectos store multiple values
-# Create a vector
-numbers = c(3,2,0,1,8)
-
-# Get value by index
-print(numbers[1])    # here index starts from 1
-
-#  Get the number of items
-print(length(numbers))
-
-# Get the last value
-print(numbers[length(numbers)])
-
-# Get everything but an index
-print(numbers[-1])
