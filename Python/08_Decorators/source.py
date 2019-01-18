@@ -141,3 +141,66 @@ print(func_req_dec3.__name__)
 
 #Note: @wraps takes a function to be decorated and adds the functionality of copying over the function name, docstring, 
 # arguments list, etc. This allows to access the pre-decorated function’s properties in the decorator.
+
+
+
+# Nesting decorator within a function
+def logit(logfile="out.log"):
+    def logging_decorator(func):
+        @wraps(func)
+        def wraped_function(*args,**kwargs):
+            log_string = func.__name__ + " was called"
+            print(log_string)
+            with open(logfile,'a') as file:
+                file.write(log_string + '\n')
+        return wraped_function
+    return logging_decorator
+
+@logit()
+def myfunc1():
+    pass
+myfunc1()
+# A file called out.log now exists, with the above string
+
+@logit(logfile="func2.log")
+def myfunc2():
+    pass
+myfunc2()
+# A file calles func2.log now exists, with the same above string
+
+
+
+# Decorator Classes
+class log(object):
+    _logfile = "out.log"
+    
+    def __init__(self,func):
+        self.func = func
+        
+    def __call__(self,*args):
+        log_string = self.func.__name__ + " was called"
+        print(log_string)
+        
+        with open(self._logfile,'a') as file:
+            file.write(log_string + '\n')
+        
+        self.notfiy()
+        return self.func(*args)
+    
+    def notify(self):
+        pass
+
+log._logfile = "out.log"
+@log
+def myfunc():
+    pass
+myfunc()
+
+class email_log(log):
+    def __init__(self,email="admin@myproject.com",*args,**kwargs):
+        self.email = email
+        super(email_log,self).__init__(*args,**kwargs)
+        
+    def notify(self):
+        pass
+# From here, @email_log works just like @logit but sends an email to the admin in addition to logging.
