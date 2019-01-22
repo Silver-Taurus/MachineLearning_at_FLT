@@ -114,7 +114,7 @@ print(func_req_dec3.__name__)
 
 
 
-#Blueprint:
+# Blueprint:
 
 # from functools import wraps
 # def decorator_name(f):
