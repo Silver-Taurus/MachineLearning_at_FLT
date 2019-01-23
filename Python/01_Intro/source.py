@@ -1,6 +1,8 @@
+''' This file provides the general introduction about the pyrhon '''
+
 # Variable declaration
-var = 20        # Assigning value
-a = b = c = 10  # Multiple declaration
+# VAR = 20        # Assigning value
+A = B = C = 10  # Multiple declaration
 
 
 
@@ -21,7 +23,7 @@ a = b = c = 10  # Multiple declaration
 # True  	 def	     from	    nonlocal  while
 # and	    del        global 	 not	    with
 # as	    elif	     if	    or	       yield
-# assert   else	     import	 pass	 
+# assert   else	     import	 pass
 # break	 except	   in	    raise
 
 
@@ -44,21 +46,21 @@ a = b = c = 10  # Multiple declaration
 #           - Special literal
 
 # String Literals
-fname = "Silver"
-lname = "Taurus"
-print(fname + ' ' + lname)
-multiline = ''' First Line
- Second Line
- Third Line'''
-print(multiline)
+FNAME = "Silver"
+LNAME = "Taurus"
+print(FNAME + ' ' + LNAME)
+MULTILINE = ''' First Line
+            Second Line
+            Third Line'''
+print(MULTILINE)
 
 # Numeric Literals
 #   --> Int: +ve and -ve nubmers with no fractional part
 #   --> Long: Unlimited integer size followed by upper or lowercase L.
 #   --> Float: Real numbers with both integer and fractional part.
 #   --> Complex: In the form of a + bj, where a is the real part and the b is the immaginary part.
-#In python, the value of the integer is not restricted by the number of bits and can expand to the limit of the
-#available memory. No special arrangement is required for storing large numbers.
+# In python, the value of the integer is not restricted by the number of bits and can expand to the
+# limit of the available memory. No special arrangement is required for storing large numbers.
 
 # Boolean Literals
 # They can have two values: True or False
