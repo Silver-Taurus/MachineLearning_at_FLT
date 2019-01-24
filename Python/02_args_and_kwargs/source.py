@@ -38,7 +38,22 @@ KWARGS = {"arg3":5, "arg1":2, "arg2":3}
 test_args_kwargs(**KWARGS)
 
 
-# Order of using *args **kwargs and formal args
-
+# Order of using *args **kwargs and formal args:
 # So if you want to use all three of these in functions then the order is
 #   --> some_func(fargs, *args, **kwargs)
+
+
+# *args store the positional arguments in form of a tuple
+# **kwargs store the positional arguments in form of dictionary
+def student_info(*args, **kwargs):
+    ''' function to print the *args and **kwargs '''
+    print(args)
+    print(kwargs)
+
+student_info('Math', 'ToC', Name='Silver', age=19)
+COURSES = ['Math', 'ToC', 'Os', 'CG']
+INFO = {'fname': 'Silver', 'lname': 'Taurus', 'age': 19}
+student_info(COURSES, INFO)     # In this case both COURSES and INFO will be treated as positonal
+                                # arguments and are packed inside the *args
+student_info(*COURSES, **INFO)  # In this case both wil be unpacked according to the passed *
+                                # i.e COURSES as *args and INFO as **kwargs

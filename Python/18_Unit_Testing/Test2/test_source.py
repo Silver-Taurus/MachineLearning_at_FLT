@@ -1,6 +1,7 @@
 ''' Unit testing file for the source file '''
 
 import unittest
+from unittest.mock import patch
 from source import Employee
 
 class TestSource(unittest.TestCase):
@@ -46,6 +47,19 @@ class TestSource(unittest.TestCase):
 
         self.assertEqual(emp1.pay, 1050000)
         self.assertEqual(emp2.pay, 42000)
+
+    def test_monthly_schedule(self):
+        ''' test method for monthly_schedule function '''
+        with patch('source.requests.get') as mocked_get:
+            mocked_get.return_value.ok = True
+            mocked_get.return_value.text = 'Success'
+    
+            emp1 = Employee('Ayush', 'Kumar', 1000000)
+
+            schedule = emp1.monthly_schedule('August')
+            mocked_get.assert_called_with('http://company.com/Kumar/August')
+            self.assertEqual(schedule, 'Success')
+
 
 if __name__ == '__main__':
     unittest.main()
