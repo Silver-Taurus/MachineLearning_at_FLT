@@ -1,6 +1,9 @@
  #! /usr/bin/env python3
 
-''' Simple Web Scrapping script '''
+''' 
+Simple Web Scrapping script to get the name of top most viewed
+pages out of the given scientists using the xtools.
+'''
 
 from requests import get
 from requests.exceptions import RequestException
