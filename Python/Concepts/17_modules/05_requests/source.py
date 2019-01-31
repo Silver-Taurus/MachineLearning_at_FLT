@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 ''' Use of requests module '''
 
 import requests
@@ -58,3 +60,68 @@ print(R.url)
 R = requests.get('https://api.github.com/events')
 print(R.text)
 print()
+
+
+# Using online bin
+# using get and post commands
+
+
+# To get the info about any user
+# r = requests.get('https://api.github.com/user/user_name)
+
+# To get the info about the repos of any user
+# r = requests.get('https://api.github.com/user/user_name/repos')
+
+
+# To create a git repo
+# g = requests.post('https://api.github.com/user/repos', data={'name': 'repo_name', 'description': 'details'},
+# auth=('user_name', 'password'))
+
+
+
+# Simple Program
+
+from requests import get
+from requests.exceptions import RequestException
+from contextlib import closing
+
+def simple_get(url):
+    ''' 
+    Attempts to get the current at `url` by making an HTTP GET request. 
+    If the content-type of response is some kind of HTML/XML, return the
+    text content, otherwise return None.
+    '''
+    try:
+        with closing(get(url, stream=True)) as resp:
+            if is_good_response(resp):
+                return resp.content
+            else:
+                return None
+    except RequestException as e:
+        log_error(f'Error during requests to {url} : {str(e)}')
+        return None
+
+def is_good_response(resp):
+    ''' Returns True if response seems to be HTML, False otherwise.'''
+    content_type = resp.headers['Content-Type'].lower()
+    return (resp.status_code == 200 
+            and content_type is not None
+            and content_type.find('html') > -1)
+
+def log_error(e):
+    '''
+    It is always a good idea to log errors. This function just prints them,
+    but we can make it do anything.
+    '''
+    print(e)
+
+def main():
+    ''' Driver Program '''
+    raw_html = simple_get('http://www.fabpedigree.com/james/mathmen.htm')
+    print(len(raw_html))
+    print()
+    no_html = simple_get('https://realpython.com.blog/nope-not-gonna-find-it')
+    print(no_html is None)
+
+if __name__ == '__main__':
+    main()
