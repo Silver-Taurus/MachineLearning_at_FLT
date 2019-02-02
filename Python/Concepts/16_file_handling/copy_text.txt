@@ -1,4 +1,0 @@
-This is a text file!!!
-It contains multiple lines of data ...
-Third line
-Fourth Line
